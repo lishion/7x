@@ -63,8 +63,8 @@ Main Components
   position: absolute;
   z-index: 2;
   top: 0;
-  height: 100%;
-  width: 20px;
+
+
 }
 .cd-horizontal-timeline .events-wrapper::before {
   left: 0;
