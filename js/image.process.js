@@ -133,7 +133,7 @@ $("#tab-l").click(function () {
     if(now_index>1){
         now_index--;
         drawBlurIndex();
-        
+
     }
 
 });
