@@ -48,17 +48,17 @@
 			<div class="events-wrapper">
 				<div class="events">
 					<ol>
-						<li><a index="1" href="#0" data-date="16/01/2014" class="selected" max-size="2">16 Jan</a></li>
-						<li><a index="2" href="#0" data-date="28/02/2014" max-size="2">28 Feb</a></li>
-						<li><a index="3" href="#0" data-date="20/04/2014" max-size="2">20 Mar</a></li>
-						<li><a index="4" href="#0" data-date="20/05/2014" max-size="2">20 May</a></li>
-						<li><a index="5" href="#0" data-date="09/07/2014" max-size="2">09 Jul</a></li>
-						<li><a index="6" href="#0" data-date="30/08/2014" max-size="2">30 Aug</a></li>
-						<li><a index="7" href="#0" data-date="15/09/2014" max-size="2">15 Sep</a></li>
-						<li><a index="8" href="#0" data-date="01/11/2014" max-size="2">01 Nov</a></li>
-						<li><a index="9" href="#0" data-date="10/12/2014" max-size="2">10 Dec</a></li>
-						<li><a index="10" href="#0" data-date="19/01/2015" max-size="2">29 Jan</a></li>
-						<li><a index="11" href="#0" data-date="03/03/2015" max-size="2">3 Mar</a></li>
+						<li><a  href="#0" data-date="16/01/2014" class="selected" data-max="2">16 Jan</a></li>
+						<li><a  href="#1" data-date="28/02/2014" >28 Feb</a></li>
+						<li><a  href="#2" data-date="20/04/2014" >20 Mar</a></li>
+						<li><a  href="#3" data-date="20/05/2014" >20 May</a></li>
+						<li><a  href="#4" data-date="09/07/2014" >09 Jul</a></li>
+						<li><a  href="#5" data-date="30/08/2014" >30 Aug</a></li>
+						<li><a  href="#6" data-date="15/09/2014" >15 Sep</a></li>
+						<li><a  href="#7" data-date="01/11/2014" >01 Nov</a></li>
+						<li><a  href="#8" data-date="10/12/2014" >10 Dec</a></li>
+						<li><a  href="#9" data-date="19/01/2015" >29 Jan</a></li>
+						<li><a  href="#10" data-date="03/03/2015" >3 Mar</a></li>
 					</ol>
 
 					<span class="filling-line" aria-hidden="true"></span>
@@ -90,13 +90,13 @@
 	var now_index_grop = 1;
 
 	function getUrl(index,index_grop) {
-		return "img/"+index_grop + "/" + index + ".jgp";
+		return "img/"+index_grop + "/" + index + ".jpg";
 	}
 
 	function drawBlurIndex() {
 		drawBlur(getUrl(now_index,now_index_grop));
 	}
-
+	drawBlurIndex();
 
 	function refreshPic() {
 		$("#content").find("img").prop("src",getUrl(now_index,now_index_grop));
@@ -113,8 +113,7 @@
 	});
 
 	$("#tab-r").click(function () {
-		var x = $(".selected").prop("max-size");
-		alert(x)
+		var x = $(".selected").attr("data-max");
 		if(now_index<x){
 			now_index++;
 			drawBlurIndex();

@@ -80,13 +80,16 @@ function Gaussian_blur(data, width, height, radius, sigma) {
 
 function drawBlur(url) {
     var img = new Image();
+
     img.src=url;
     var data;
     var canvas = document.createElement("canvas"); //创建canvas元素
     var width=img.width; //确保canvas的尺寸和图片一样
     var height=img.height;
+
     canvas.width=width;
     canvas.height=height;
+
     var ctx = canvas.getContext("2d");
     ctx.drawImage(img,0,0,width,height); //将图片绘制到canvas中
     data = ctx.getImageData(0,0,width,height);
