@@ -86,40 +86,8 @@
 <script src="js/main.js"></script>
 <script src="js/image.process.js"></script>
 <script>
-	var now_index = 1;
-	var now_index_grop = 1;
 
-	function getUrl(index,index_grop) {
-		return "img/"+index_grop + "/" + index + ".jpg";
-	}
 
-	function drawBlurIndex() {
-		drawBlur(getUrl(now_index,now_index_grop));
-	}
-	drawBlurIndex();
-
-	function refreshPic() {
-		$("#content").find("img").prop("src",getUrl(now_index,now_index_grop));
-	}
-
-	$("#tab-l").click(function () {
-
-		if(now_index>1){
-			now_index--;
-			drawBlurIndex();
-			refreshPic();
-		}
-
-	});
-
-	$("#tab-r").click(function () {
-		var x = $(".selected").attr("data-max");
-		if(now_index<x){
-			now_index++;
-			drawBlurIndex();
-			refreshPic();
-		}
-	});
 
 </script>
 </body>

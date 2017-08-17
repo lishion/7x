@@ -78,25 +78,71 @@ function Gaussian_blur(data, width, height, radius, sigma) {
     return data;
 }
 
+function onSuccess(image,callback){
+    var timer = setInterval(function () {
+        if(image.complete == true){
+            callback();
+            clearInterval(timer);
+        }
+    },100);
+}
+
 function drawBlur(url) {
     var img = new Image();
-
     img.src=url;
-    var data;
-    var canvas = document.createElement("canvas"); //创建canvas元素
-    var width=img.width; //确保canvas的尺寸和图片一样
-    var height=img.height;
 
-    canvas.width=width;
-    canvas.height=height;
+    onSuccess(img,function () {
+        var data;
+        var canvas = document.createElement("canvas"); //创建canvas元素
+        var width=img.width; //确保canvas的尺寸和图片一样
+        var height=img.height;
 
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img,0,0,width,height); //将图片绘制到canvas中
-    data = ctx.getImageData(0,0,width,height);
-    data.data = Gaussian_blur(data.data,width,height,10,100);
-    ctx.putImageData(data,0,0);
-    var dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
-    document.body.style.background="url("+dataURL+")";
-    document.body.style.backgroundRepeat = "no-repeat"
-    document.body.style.backgroundSize = "100% 130%"
+        canvas.width=width;
+        canvas.height=height;
+
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img,0,0,width,height); //将图片绘制到canvas中
+        data = ctx.getImageData(0,0,width,height);
+        data.data = Gaussian_blur(data.data,width,height,10,100);
+        ctx.putImageData(data,0,0);
+        var dataURL = canvas.toDataURL('image/jpeg'); //转换图片为dataURL
+        document.body.style.background="url("+dataURL+")";
+        document.body.style.backgroundRepeat = "no-repeat"
+        document.body.style.backgroundSize = "100% 130%"
+        refreshPic();
+    })
 }
+var now_index = 1;
+var now_index_grop = 1;
+
+function getUrl(index,index_grop) {
+    return "img/"+index_grop + "/" + index + ".jpg";
+}
+
+function drawBlurIndex() {
+    drawBlur(getUrl(now_index,now_index_grop));
+}
+drawBlurIndex();
+
+function refreshPic() {
+    $("#content").find("img").prop("src",getUrl(now_index,now_index_grop));
+}
+
+$("#tab-l").click(function () {
+
+    if(now_index>1){
+        now_index--;
+        drawBlurIndex();
+        
+    }
+
+});
+
+$("#tab-r").click(function () {
+    var x = $(".selected").attr("data-max");
+    if(now_index<x){
+        now_index++;
+        drawBlurIndex();
+
+    }
+});
